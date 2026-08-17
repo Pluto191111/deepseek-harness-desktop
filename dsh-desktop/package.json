@@ -1,0 +1,38 @@
+{
+  "name": "dsh-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Desktop shell for a local DeepSeek Harness engine.",
+  "type": "module",
+  "main": "dist/main/main.js",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.main.json && tsc -p tsconfig.renderer.json && vite build",
+    "check": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
+    "prepare:win": "npm run build && node scripts/package-windows.mjs",
+    "package:win": "npm run prepare:win && electron-builder --config electron-builder.config.mjs --win dir --x64 --publish never",
+    "package:installer": "npm run prepare:win && node scripts/prepare-installer.mjs && electron-builder --config electron-builder.config.mjs --win nsis --x64 --publish never",
+    "release:github": "npm run prepare:win && node scripts/prepare-installer.mjs --require-update-feed && electron-builder --config electron-builder.config.mjs --win nsis --x64 --publish always",
+    "start": "npm run build && electron ."
+  },
+  "devDependencies": {
+    "7zip-bin": "5.2.0",
+    "@electron/get": "3.1.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "^39.0.0",
+    "electron-builder": "^26.15.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9"
+  }
+}

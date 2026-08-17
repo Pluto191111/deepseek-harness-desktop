@@ -1,0 +1,9 @@
+{
+  "name": "dsh-desktop-updater-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Production dependency closure for the DSH Desktop updater.",
+  "dependencies": {
+    "electron-updater": "^6.8.9"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+release-installer/
+.package-runtime/
+.package-updater/
+.builder-app/
+.builder-resources/
+.updater-runtime-*/
+.runtime-*/
+*.tsbuildinfo
