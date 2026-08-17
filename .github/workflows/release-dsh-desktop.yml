@@ -31,4 +31,16 @@ jobs:
         run: corepack pnpm install --frozen-lockfile
       - name: Package and publish the installer
         working-directory: dsh-desktop
-        run: npm run release:github
+        shell: pwsh
+        run: |
+          $attempts = 3
+          for ($attempt = 1; $attempt -le $attempts; $attempt++) {
+            npm run release:github
+            if ($LASTEXITCODE -eq 0) {
+              exit 0
+            }
+            if ($attempt -eq $attempts) {
+              exit $LASTEXITCODE
+            }
+            Start-Sleep -Seconds (30 * $attempt)
+          }
