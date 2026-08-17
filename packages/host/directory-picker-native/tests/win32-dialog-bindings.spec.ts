@@ -180,6 +180,14 @@ describe('loadWin32DialogBindings over the fake COM world', () => {
     expect(world.uninitialized).toBe(1)
   })
 
+  it('keeps a selected path whose UTF-16LE character starts with a zero byte', async () => {
+    const world = comWorld({ path: 'D:\\AVC开发程序代码' })
+    installFakeKoffi(world)
+    const bindings = await (await loadBindingsModule()).loadWin32DialogBindings()
+
+    expect(runFolderDialog(bindings, 'Pick', vi.fn())).toBe('D:\\AVC开发程序代码')
+  })
+
   it('maps dismissal and the S_FALSE CoInitializeEx', async () => {
     const world = comWorld({ showHr: HRESULT_CANCELLED, coInitHr: 1 })
     installFakeKoffi(world)
