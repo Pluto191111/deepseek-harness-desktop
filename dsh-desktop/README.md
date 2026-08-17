@@ -57,7 +57,7 @@ $env:GH_TOKEN = "github-token"
 npm run release:github
 ```
 
-For regular releases, put this project in that GitHub repository and push a `dsh-desktop-v*` tag. The `Release Deepsee HARNESS` workflow builds the installer, publishes it, and uploads the update metadata. Installed builds check this feed at startup; the user approves both download and restart. Keep the release repository public unless you separately configure authenticated private-release access.
+For regular releases, put this project in that GitHub repository and push a `v*` tag. The `Release Deepsee HARNESS` workflow builds the installer, publishes it, and uploads the update metadata. Installed builds check this feed at startup; the user approves both download and restart. Keep the release repository public unless you separately configure authenticated private-release access.
 
 ## Desktop scope
 

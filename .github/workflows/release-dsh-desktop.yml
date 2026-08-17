@@ -3,7 +3,7 @@ name: Release Deepsee HARNESS
 on:
   push:
     tags:
-      - 'dsh-desktop-v*'
+      - 'v*'
   workflow_dispatch:
 
 permissions:
